@@ -1,14 +1,8 @@
 name: Publish Packages
 
 on:
-  push:
-    tags:
-      - 'types-v*'
-      - 'core-v*'
-      - 'workflows-v*'
-      - 'prompts-v*'
-      - 'workflow-ui-v*'
-      - 'cli-v*'
+  release:
+    types: [published]
   workflow_dispatch:
     inputs:
       package:
