@@ -42,6 +42,9 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Upgrade npm for OIDC trusted publishing
+        run: npm install -g npm@latest
+
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
@@ -90,6 +93,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+
+      - name: Upgrade npm for OIDC trusted publishing
+        run: npm install -g npm@latest
 
       - uses: oven-sh/setup-bun@v2
         with:
@@ -167,6 +173,9 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Upgrade npm for OIDC trusted publishing
+        run: npm install -g npm@latest
+
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
@@ -243,6 +252,9 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Upgrade npm for OIDC trusted publishing
+        run: npm install -g npm@latest
+
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
@@ -318,6 +330,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+
+      - name: Upgrade npm for OIDC trusted publishing
+        run: npm install -g npm@latest
 
       - uses: oven-sh/setup-bun@v2
         with:
@@ -396,6 +411,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+
+      - name: Upgrade npm for OIDC trusted publishing
+        run: npm install -g npm@latest
 
       - uses: oven-sh/setup-bun@v2
         with:
