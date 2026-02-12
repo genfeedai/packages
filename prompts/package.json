@@ -1,6 +1,6 @@
 {
   "name": "@genfeedai/prompts",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "sideEffects": false,
   "license": "AGPL-3.0",
   "repository": {
@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@genfeedai/types": "workspace:*",
+    "@types/node": "^25.2.3",
     "tsup": "8.4.0",
     "typescript": "5.9.3"
   }

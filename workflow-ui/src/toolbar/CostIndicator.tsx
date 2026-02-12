@@ -17,7 +17,7 @@ export function CostIndicator() {
 
   const displayCost = isRunning && actualCost > 0 ? actualCost : breakdown.total;
 
-  if (breakdown.nodes.length === 0) return null;
+  if (breakdown.items.length === 0) return null;
 
   return (
     <button

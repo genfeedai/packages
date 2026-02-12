@@ -1,6 +1,6 @@
 {
   "name": "@genfeedai/workflow-ui",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "type": "module",
   "license": "AGPL-3.0",
   "description": "Shared UI components for Genfeed workflow editor",
@@ -88,21 +88,22 @@
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
+    "@genfeedai/core": "workspace:*",
     "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "16.2.0",
-    "@genfeedai/core": "workspace:*",
-    "jsdom": "26.0.0",
-    "react-compare-slider": "^3.1.0",
+    "@types/node": "^25.2.3",
     "@types/react": "19.2.4",
-    "@types/react-dom": "19.2.4",
+    "@types/react-dom": "19.2.3",
     "@xyflow/react": "12.10.0",
+    "jsdom": "26.0.0",
     "react": "19.2.4",
+    "react-compare-slider": "^3.1.0",
     "react-dom": "19.2.4",
     "tsup": "8.4.0",
     "typescript": "5.9.3",
     "vitest": "3.0.4",
-    "zustand": "5.0.3",
-    "zundo": "2.3.0"
+    "zundo": "2.3.0",
+    "zustand": "5.0.3"
   },
   "scripts": {
     "build": "tsup",
