@@ -1,0 +1,12 @@
+{
+  "name": "@genfeedai/packages",
+  "private": true,
+  "workspaces": [
+    "types",
+    "core",
+    "workflows",
+    "prompts",
+    "workflow-ui",
+    "cli"
+  ]
+}
