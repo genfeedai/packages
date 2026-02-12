@@ -30,14 +30,33 @@ bun run --cwd cli build
 
 ## Publishing
 
-Packages are published to npm via GitHub Actions. To publish a package:
+Packages are published to npm via GitHub Releases. Only the package matching the tag gets published — the other jobs skip automatically.
 
-1. Bump the version in the package's `package.json`
-2. Push a tag: `git tag {package}-v{version} && git push origin {package}-v{version}`
+### Steps
 
-Tag format: `types-v0.1.2`, `core-v0.1.2`, `cli-v0.2.1`, etc.
+1. Bump the version in `{package}/package.json`
+2. Commit: `git commit -m "chore: bump {package} to {version}"`
+3. Go to **GitHub > Releases > Create a new release**
+4. Create a new tag: `{package}-v{version}` (e.g. `types-v0.1.2`, `cli-v0.3.0`)
+5. Add release notes
+6. Hit **Publish release**
 
-You can also trigger a publish manually via the Actions tab using `workflow_dispatch`.
+The CI workflow validates that the tag version matches `package.json`, builds workspace dependencies, resolves `workspace:*` references, and publishes to npm with provenance.
+
+### Tag format
+
+| Package | Tag example |
+|---------|-------------|
+| `@genfeedai/types` | `types-v0.1.2` |
+| `@genfeedai/core` | `core-v0.1.2` |
+| `@genfeedai/workflows` | `workflows-v0.1.2` |
+| `@genfeedai/prompts` | `prompts-v0.1.2` |
+| `@genfeedai/workflow-ui` | `workflow-ui-v0.1.6` |
+| `@genfeedai/cli` | `cli-v0.3.0` |
+
+### Manual publish
+
+You can also trigger a publish from the **Actions** tab using `workflow_dispatch` and selecting which package (or "all").
 
 ## License
 
