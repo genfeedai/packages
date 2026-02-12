@@ -58,7 +58,7 @@ export async function get<T>(path: string): Promise<T> {
 
 export async function post<T>(path: string, body?: Record<string, unknown>): Promise<T> {
   const client = await createClient();
-  return client<T>(path, { method: 'POST', body });
+  return client<T>(path, { body, method: 'POST' });
 }
 
 export async function requireAuth(): Promise<string> {

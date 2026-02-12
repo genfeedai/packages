@@ -1,8 +1,8 @@
 {
   "author": "Genfeed.ai",
   "bin": {
-    "gf": "dist/index.js",
-    "genfeed": "dist/index.js"
+    "genfeed": "dist/index.js",
+    "gf": "dist/index.js"
   },
   "dependencies": {
     "@inquirer/prompts": "8.2.0",
@@ -47,17 +47,17 @@
     "access": "public"
   },
   "repository": {
+    "directory": "cli",
     "type": "git",
-    "url": "git+https://github.com/genfeedai/packages.git",
-    "directory": "cli"
+    "url": "git+https://github.com/genfeedai/packages.git"
   },
   "scripts": {
     "build": "bun build src/index.ts --outdir dist --target node",
     "build:standalone": "bun build src/index.ts --compile --outfile gf",
+    "deps:update": "bunx npm-check-updates -u && bun install",
     "dev": "bun run src/index.ts",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
-    "deps:update": "bunx npm-check-updates -u && bun install",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest",

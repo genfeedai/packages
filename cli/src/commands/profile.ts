@@ -70,8 +70,8 @@ profileCommand
   .action(async (name, options) => {
     try {
       await createProfile(name, {
-        apiUrl: options.apiUrl,
         apiKey: options.apiKey,
+        apiUrl: options.apiUrl,
         darkroomHost: options.darkroomHost,
         role: options.role as 'user' | 'admin',
       });
@@ -91,13 +91,13 @@ profileCommand
   .action(async (field, value, options) => {
     try {
       const fieldMap: Record<string, keyof import('../config/schema.js').Profile> = {
-        'api-url': 'apiUrl',
+        'active-brand': 'activeBrand',
+        'active-persona': 'activePersona',
         'api-key': 'apiKey',
+        'api-url': 'apiUrl',
         'darkroom-host': 'darkroomHost',
         'darkroom-port': 'darkroomApiPort',
         role: 'role',
-        'active-persona': 'activePersona',
-        'active-brand': 'activeBrand',
       };
 
       const mappedField = fieldMap[field];

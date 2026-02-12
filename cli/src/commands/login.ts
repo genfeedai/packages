@@ -167,12 +167,12 @@ async function completeLogin(apiKey: string): Promise<void> {
       console.log(formatSuccess(`Active brand: ${chalk.bold(brands[0].name)}`));
     } else {
       const selected = await select({
-        message: 'Select a brand:',
         choices: brands.map((brand) => ({
+          description: brand.description,
           name: brand.name,
           value: brand.id,
-          description: brand.description,
         })),
+        message: 'Select a brand:',
       });
 
       await setActiveBrand(selected);
@@ -210,8 +210,8 @@ export const loginCommand = new Command('login')
         console.log(chalk.dim('Get your API key at: https://app.genfeed.ai/settings/api-keys\n'));
 
         const apiKey = await password({
-          message: 'Enter your Genfeed API key:',
           mask: '*',
+          message: 'Enter your Genfeed API key:',
           validate: (value) => {
             if (!value) return 'API key is required';
             if (!value.startsWith('gf_')) return 'Invalid key format (should start with gf_)';

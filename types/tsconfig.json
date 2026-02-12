@@ -4,8 +4,6 @@
     "lib": ["ES2022"],
     "module": "commonjs",
     "moduleResolution": "node",
-    "declaration": true,
-    "declarationMap": true,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,

@@ -68,12 +68,12 @@ export const trainCommand = new Command('train')
           const spinner = ora('Starting training...').start();
 
           const result = await startTraining({
-            persona_slug: handle,
-            trigger_word: triggerWord,
-            lora_name: loraName,
-            steps,
-            lora_rank: options.rank ?? 16,
             learning_rate: options.lr ?? 4e-4,
+            lora_name: loraName,
+            lora_rank: options.rank ?? 16,
+            persona_slug: handle,
+            steps,
+            trigger_word: triggerWord,
           });
 
           spinner.succeed('Training started');

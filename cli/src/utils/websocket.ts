@@ -71,7 +71,7 @@ export async function waitForCompletion<T>(
 
       try {
         const result = await getResult();
-        resolve({ result, elapsed });
+        resolve({ elapsed, result });
       } catch (err) {
         reject(err);
       }
@@ -88,10 +88,10 @@ export async function waitForCompletion<T>(
       auth: {
         token: apiKey,
       },
-      transports: ['websocket'],
       reconnection: true,
       reconnectionAttempts: 5,
       reconnectionDelay: 1000,
+      transports: ['websocket'],
     });
 
     socket.on('connect', () => {
@@ -155,9 +155,9 @@ export async function createWebSocketConnection(): Promise<Socket> {
     auth: {
       token: apiKey,
     },
-    transports: ['websocket'],
     reconnection: true,
     reconnectionAttempts: 5,
     reconnectionDelay: 1000,
+    transports: ['websocket'],
   });
 }

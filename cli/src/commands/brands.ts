@@ -25,13 +25,13 @@ export const brandsCommand = new Command('brands')
         console.log(
           JSON.stringify(
             {
+              activeBrandId,
               brands: brands.map((b) => ({
+                active: b.id === activeBrandId,
+                description: b.description,
                 id: b.id,
                 name: b.name,
-                description: b.description,
-                active: b.id === activeBrandId,
               })),
-              activeBrandId,
             },
             null,
             2
@@ -85,13 +85,13 @@ brandsCommand
       const activeBrandId = await getActiveBrand();
 
       const selected = await select({
-        message: 'Select a brand:',
         choices: brands.map((brand) => ({
+          description: brand.description,
           name: brand.id === activeBrandId ? `${brand.name} (current)` : brand.name,
           value: brand.id,
-          description: brand.description,
         })),
         default: activeBrandId,
+        message: 'Select a brand:',
       });
 
       await setActiveBrand(selected);
@@ -133,9 +133,9 @@ brandsCommand
           JSON.stringify(
             {
               activeBrand: {
+                description: brand.description,
                 id: brand.id,
                 name: brand.name,
-                description: brand.description,
               },
             },
             null,

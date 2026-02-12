@@ -54,32 +54,32 @@ export const statusCommand = new Command('status')
         if (options.type === 'video') {
           const video = await getVideo(id);
           result = {
-            id: video.id,
-            type: 'video',
-            status: video.status,
-            url: video.url,
-            error: video.error,
-            model: video.model,
-            createdAt: video.createdAt,
             completedAt: video.completedAt,
+            createdAt: video.createdAt,
             duration: video.duration,
+            error: video.error,
+            id: video.id,
+            model: video.model,
             resolution: video.resolution,
+            status: video.status,
+            type: 'video',
+            url: video.url,
           };
         } else {
           const image = await getImage(id);
           result = {
-            id: image.id,
-            type: 'image',
-            status: image.status,
-            url: image.url,
-            error: image.error,
-            model: image.model,
-            createdAt: image.createdAt,
             completedAt: image.completedAt,
+            createdAt: image.createdAt,
             dimensions:
               image.width && image.height
-                ? { width: image.width, height: image.height }
+                ? { height: image.height, width: image.width }
                 : undefined,
+            error: image.error,
+            id: image.id,
+            model: image.model,
+            status: image.status,
+            type: 'image',
+            url: image.url,
           };
         }
       } catch (err) {
@@ -88,16 +88,16 @@ export const statusCommand = new Command('status')
           try {
             const video = await getVideo(id);
             result = {
-              id: video.id,
-              type: 'video',
-              status: video.status,
-              url: video.url,
-              error: video.error,
-              model: video.model,
-              createdAt: video.createdAt,
               completedAt: video.completedAt,
+              createdAt: video.createdAt,
               duration: video.duration,
+              error: video.error,
+              id: video.id,
+              model: video.model,
               resolution: video.resolution,
+              status: video.status,
+              type: 'video',
+              url: video.url,
             };
           } catch {
             throw err; // Re-throw original error

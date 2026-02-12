@@ -35,11 +35,11 @@ export const videoCommand = new Command('video')
       const spinner = ora('Creating video...').start();
 
       const video = await createVideo({
-        text: prompt,
         brand: brandId,
-        model,
         duration: options.duration,
+        model,
         resolution: options.resolution,
+        text: prompt,
       });
 
       if (!options.wait) {
@@ -59,10 +59,10 @@ export const videoCommand = new Command('video')
       spinner.text = 'Generating video...';
 
       const { result, elapsed } = await waitForCompletion<Video>({
-        taskId: video.id,
-        taskType: 'VIDEO',
         getResult: () => getVideo(video.id),
         spinner,
+        taskId: video.id,
+        taskType: 'VIDEO',
         timeout: 600000,
       });
 
@@ -73,13 +73,13 @@ export const videoCommand = new Command('video')
         console.log(
           JSON.stringify(
             {
+              duration: result.duration,
+              elapsed: elapsed,
               id: result.id,
+              model: result.model,
+              resolution: result.resolution,
               status: result.status,
               url: result.url,
-              duration: result.duration,
-              resolution: result.resolution,
-              model: result.model,
-              elapsed: elapsed,
             },
             null,
             2

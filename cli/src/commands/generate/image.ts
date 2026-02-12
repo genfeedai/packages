@@ -35,11 +35,11 @@ export const imageCommand = new Command('image')
       const spinner = ora('Creating image...').start();
 
       const image = await createImage({
-        text: prompt,
         brand: brandId,
-        model,
-        width: options.width,
         height: options.height,
+        model,
+        text: prompt,
+        width: options.width,
       });
 
       if (!options.wait) {
@@ -59,10 +59,10 @@ export const imageCommand = new Command('image')
       spinner.text = 'Generating image...';
 
       const { result, elapsed } = await waitForCompletion<Image>({
-        taskId: image.id,
-        taskType: 'IMAGE',
         getResult: () => getImage(image.id),
         spinner,
+        taskId: image.id,
+        taskType: 'IMAGE',
         timeout: 300000,
       });
 
@@ -73,13 +73,13 @@ export const imageCommand = new Command('image')
         console.log(
           JSON.stringify(
             {
+              elapsed: elapsed,
+              height: result.height,
               id: result.id,
+              model: result.model,
               status: result.status,
               url: result.url,
               width: result.width,
-              height: result.height,
-              model: result.model,
-              elapsed: elapsed,
             },
             null,
             2

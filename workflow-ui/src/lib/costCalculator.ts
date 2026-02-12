@@ -1,4 +1,4 @@
-import type { WorkflowNode } from '@genfeedai/types';
+import type { CostBreakdown, NodeCostEstimate, WorkflowNode } from '@genfeedai/types';
 import {
   DEFAULT_VIDEO_DURATION,
   IMAGE_NODE_TYPES,
@@ -8,23 +8,7 @@ import {
   VIDEO_NODE_TYPES,
 } from '@genfeedai/core';
 
-// =============================================================================
-// TYPES
-// =============================================================================
-
-export interface NodeCostEstimate {
-  nodeId: string;
-  nodeLabel: string;
-  nodeType: string;
-  model: string;
-  unit: string;
-  cost: number;
-}
-
-export interface CostBreakdown {
-  total: number;
-  nodes: NodeCostEstimate[];
-}
+export type { CostBreakdown, NodeCostEstimate };
 
 // =============================================================================
 // HELPERS
@@ -71,8 +55,10 @@ export function calculateWorkflowCost(nodes: WorkflowNode[]): CostBreakdown {
         nodeLabel: label,
         nodeType: type,
         model,
+        unitPrice: cost,
+        quantity: 1,
+        subtotal: cost,
         unit: 'per image',
-        cost,
       });
       continue;
     }
@@ -91,13 +77,18 @@ export function calculateWorkflowCost(nodes: WorkflowNode[]): CostBreakdown {
         perSecond = generateAudio ? (entry.withAudio ?? 0) : (entry.withoutAudio ?? 0);
       }
 
+      const subtotal = perSecond * duration;
       estimates.push({
         nodeId: node.id,
         nodeLabel: label,
         nodeType: type,
         model,
+        unitPrice: perSecond,
+        quantity: duration,
+        subtotal,
         unit: `${duration}s video`,
-        cost: perSecond * duration,
+        duration,
+        withAudio: generateAudio,
       });
       continue;
     }
@@ -107,12 +98,12 @@ export function calculateWorkflowCost(nodes: WorkflowNode[]): CostBreakdown {
       const model = getDataField(data, 'model', 'photon-flash-1');
       const inputType = getDataField<string>(data, 'inputType', 'image');
 
-      let cost = 0;
+      let subtotal = 0;
       if (inputType === 'video') {
-        cost = (PRICING['luma-reframe-video'] as number) * DEFAULT_VIDEO_DURATION;
+        subtotal = (PRICING['luma-reframe-video'] as number) * DEFAULT_VIDEO_DURATION;
       } else {
         const imageEntry = PRICING['luma-reframe-image'];
-        cost = (imageEntry as Record<string, number>)[model] ?? 0.01;
+        subtotal = (imageEntry as Record<string, number>)[model] ?? 0.01;
       }
 
       estimates.push({
@@ -120,8 +111,10 @@ export function calculateWorkflowCost(nodes: WorkflowNode[]): CostBreakdown {
         nodeLabel: label,
         nodeType: type,
         model,
+        unitPrice: subtotal,
+        quantity: 1,
+        subtotal,
         unit: inputType === 'video' ? 'per video' : 'per image',
-        cost,
       });
       continue;
     }
@@ -143,8 +136,11 @@ export function calculateWorkflowCost(nodes: WorkflowNode[]): CostBreakdown {
           nodeLabel: label,
           nodeType: type,
           model: 'topaz-video',
+          unitPrice: pricePerChunk,
+          quantity: chunks,
+          subtotal: pricePerChunk * chunks,
           unit: `${duration}s video`,
-          cost: pricePerChunk * chunks,
+          duration,
         });
       } else {
         // Image upscale - default to ~1MP tier
@@ -157,8 +153,10 @@ export function calculateWorkflowCost(nodes: WorkflowNode[]): CostBreakdown {
           nodeLabel: label,
           nodeType: type,
           model: getDataField(data, 'model', 'topaz-standard-v2'),
+          unitPrice: tier.price,
+          quantity: 1,
+          subtotal: tier.price,
           unit: 'per image',
-          cost: tier.price,
         });
       }
       continue;
@@ -169,21 +167,24 @@ export function calculateWorkflowCost(nodes: WorkflowNode[]): CostBreakdown {
       const maxTokens = getDataField(data, 'maxTokens', 1024);
       // Rough estimate: input tokens ~= 2x maxTokens (system prompt + input)
       const estimatedTokens = maxTokens * 3;
+      const subtotal = estimatedTokens * PRICING.llama;
 
       estimates.push({
         nodeId: node.id,
         nodeLabel: label,
         nodeType: type,
         model: getDataField(data, 'model', 'llama'),
+        unitPrice: PRICING.llama,
+        quantity: estimatedTokens,
+        subtotal,
         unit: `~${estimatedTokens} tokens`,
-        cost: estimatedTokens * PRICING.llama,
       });
     }
   }
 
   return {
-    total: estimates.reduce((sum, e) => sum + e.cost, 0),
-    nodes: estimates,
+    total: estimates.reduce((sum, e) => sum + e.subtotal, 0),
+    items: estimates,
   };
 }
 

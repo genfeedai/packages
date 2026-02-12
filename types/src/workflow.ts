@@ -17,8 +17,13 @@ export interface WorkflowFile {
   edges: WorkflowEdge[];
   edgeStyle: EdgeStyle;
   groups?: NodeGroup[];
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
+  metadata?: {
+    exportedAt?: string;
+    exportedFrom?: string;
+    originalId?: string;
+  };
 }
 
 /**
@@ -78,14 +83,3 @@ export interface ExecutionResult {
   duration: number;
 }
 
-export interface CostEstimate {
-  model: string;
-  count: number;
-  unitCost: number;
-  totalCost: number;
-}
-
-export interface WorkflowCostEstimate {
-  items: CostEstimate[];
-  totalCost: number;
-}

@@ -1,4 +1,4 @@
-export enum TemplateCategory {
+export enum WorkflowTemplateCategory {
   IMAGE = 'image',
   VIDEO = 'video',
   AUDIO = 'audio',

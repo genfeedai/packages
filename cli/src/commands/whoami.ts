@@ -33,10 +33,10 @@ export const whoamiCommand = new Command('whoami')
         console.log(
           JSON.stringify(
             {
-              user: info.user,
+              activeBrand: activeBrand ? { id: activeBrand.id, name: activeBrand.name } : null,
               organization: info.organization,
               scopes: info.scopes,
-              activeBrand: activeBrand ? { id: activeBrand.id, name: activeBrand.name } : null,
+              user: info.user,
             },
             null,
             2
