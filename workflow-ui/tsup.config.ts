@@ -14,6 +14,7 @@ export default defineConfig({
     lib: 'src/lib/index.ts',
   },
   format: ['esm'],
+  outExtension: () => ({ js: '.mjs' }),
   tsconfig: 'tsconfig.build.json',
   dts: true,
   clean: true,
