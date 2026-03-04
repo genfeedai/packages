@@ -94,3 +94,19 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on submitting new workfl
 ## License
 
 AGPL-3.0
+
+
+## Extension & Engine Contracts
+
+Use shared contracts for workflow engines and cloud extension packs:
+
+```typescript
+import type {
+  ExecutableWorkflow,
+  NodeDefinition,
+  ExtensionPack,
+  NodeRegistry,
+} from '@genfeedai/workflows/contracts';
+```
+
+These contracts are designed so private/cloud node packs can extend public core workflows without forking type definitions.
