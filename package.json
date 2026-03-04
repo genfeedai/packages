@@ -8,5 +8,8 @@
     "prompts",
     "workflow-ui",
     "cli"
-  ]
+  ],
+  "scripts": {
+    "check:public-packages": "node scripts/check-public-package-manifests.mjs"
+  }
 }
