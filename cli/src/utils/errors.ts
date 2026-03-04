@@ -1,11 +1,16 @@
-import chalk from 'chalk';
+import {
+  ApiError,
+  BaseCliError,
+  formatError,
+  handleError as baseHandleError,
+} from '@genfeedai/errors';
 
-export class GenfeedError extends Error {
-  constructor(
-    message: string,
-    public suggestion?: string
-  ) {
-    super(message);
+export { ApiError, formatError } from '@genfeedai/errors';
+export type { HandleErrorOptions } from '@genfeedai/errors';
+
+export class GenfeedError extends BaseCliError {
+  constructor(message: string, suggestion?: string) {
+    super(message, suggestion);
     this.name = 'GenfeedError';
   }
 }
@@ -19,19 +24,11 @@ export class AuthError extends GenfeedError {
 
 export class AdminRequiredError extends GenfeedError {
   constructor() {
-    super('This command requires admin access.', 'Contact your organization admin for access.');
+    super(
+      'This command requires admin access.',
+      'Contact your organization admin for access.'
+    );
     this.name = 'AdminRequiredError';
-  }
-}
-
-export class ApiError extends GenfeedError {
-  constructor(
-    message: string,
-    public statusCode?: number,
-    suggestion?: string
-  ) {
-    super(message, suggestion);
-    this.name = 'ApiError';
   }
 }
 
@@ -44,25 +41,12 @@ export class NoBrandError extends GenfeedError {
 
 export class DarkroomApiError extends GenfeedError {
   constructor(message: string, suggestion?: string) {
-    super(message, suggestion ?? 'Check darkroom connectivity with `gf darkroom health`');
+    super(
+      message,
+      suggestion ?? 'Check darkroom connectivity with `gf darkroom health`'
+    );
     this.name = 'DarkroomApiError';
   }
-}
-
-export function formatError(error: unknown): string {
-  if (error instanceof GenfeedError) {
-    let output = chalk.red(`✖ ${error.message}`);
-    if (error.suggestion) {
-      output += `\n  ${chalk.dim(error.suggestion)}`;
-    }
-    return output;
-  }
-
-  if (error instanceof Error) {
-    return chalk.red(`✖ ${error.message}`);
-  }
-
-  return chalk.red('✖ An unknown error occurred');
 }
 
 let replMode = false;
@@ -72,9 +56,5 @@ export function setReplMode(enabled: boolean): void {
 }
 
 export function handleError(error: unknown): never {
-  console.error(formatError(error));
-  if (replMode) {
-    throw error;
-  }
-  process.exit(1);
+  baseHandleError(error, { replMode });
 }

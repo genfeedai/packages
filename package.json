@@ -4,6 +4,7 @@
   "workspaces": [
     "types",
     "core",
+    "errors",
     "workflows",
     "prompts",
     "workflow-ui",

@@ -1,0 +1,43 @@
+{
+  "name": "@genfeedai/errors",
+  "version": "0.1.0",
+  "sideEffects": false,
+  "license": "MIT",
+  "description": "Shared error classes and formatting for Genfeed CLI tools",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/genfeedai/packages.git",
+    "directory": "errors"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "prepublishOnly": "bun run build"
+  },
+  "dependencies": {
+    "chalk": "5.6.2"
+  },
+  "devDependencies": {
+    "@types/node": "25.2.3",
+    "tsup": "8.4.0",
+    "typescript": "5.9.3"
+  },
+  "type": "module"
+}

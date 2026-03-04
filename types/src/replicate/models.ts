@@ -1,7 +1,7 @@
 /**
  * Auto-generated Replicate model types
  * DO NOT EDIT - Run `bun run sync:replicate` to regenerate
- * Generated at: 2026-01-29T02:24:16.582Z
+ * Generated at: 2026-02-26T20:32:20.371Z
  */
 
 // This file is auto-generated. Do not edit manually.
@@ -39,6 +39,49 @@ export interface NanoBananaInput {
 export type NanoBananaOutput = string;
 
 /**
+ * Input parameters for google/nano-banana-2
+ */
+export interface NanoBanana2Input {
+  /**
+   * A text description of the image you want to generate
+   */
+  prompt: string;
+  /**
+   * Input images to transform or use as reference (supports up to 14 images)
+   * @default []
+   */
+  image_input?: string[];
+  /**
+   * Aspect ratio of the generated image
+   * @default "match_input_image"
+   */
+  aspect_ratio?: unknown;
+  /**
+   * Resolution of the generated image. Higher resolutions take longer to generate.
+   * @default "1K"
+   */
+  resolution?: unknown;
+  /**
+   * Use Google Web Search grounding to generate images based on real-time information (e.g. weather, sports scores, recent events).
+   * @default false
+   */
+  google_search?: boolean;
+  /**
+   * Use Google Image Search grounding to use web images as visual context for generation. When enabled, web search is also used automatically.
+   * @default false
+   */
+  image_search?: boolean;
+  /**
+   * Format of the output image
+   * @default "jpg"
+   */
+  output_format?: unknown;
+}
+
+/** Output type for google/nano-banana-2 */
+export type NanoBanana2Output = string;
+
+/**
  * Input parameters for google/nano-banana-pro
  */
 export interface NanoBananaProInput {
@@ -71,6 +114,11 @@ export interface NanoBananaProInput {
    * @default "block_only_high"
    */
   safety_filter_level?: unknown;
+  /**
+   * Fallback to another model (currently bytedance/seedream-5) if Nano Banana Pro is at capacity.
+   * @default false
+   */
+  allow_fallback_model?: boolean;
 }
 
 /** Output type for google/nano-banana-pro */
@@ -113,7 +161,7 @@ export interface ZImageTurboInput {
    */
   seed?: number;
   /**
-   * Apply additional optimizations for faster generation
+   * Deprecated. Kept for API compatibility with original z-image-turbo.
    * @default false
    */
   go_fast?: boolean;
@@ -326,175 +374,6 @@ export interface Flux11ProInput {
 
 /** Output type for black-forest-labs/flux-1.1-pro */
 export type Flux11ProOutput = string;
-
-/**
- * Input parameters for stability-ai/sdxl
- */
-export interface SDXLInput {
-  /**
-   * Input prompt
-   * @default "An astronaut riding a rainbow unicorn"
-   */
-  prompt?: string;
-  /**
-   * Input Negative Prompt
-   * @default ""
-   */
-  negative_prompt?: string;
-  /**
-   * Input image for img2img or inpaint mode
-   */
-  image?: string;
-  /**
-   * Input mask for inpaint mode. Black areas will be preserved, white areas will be inpainted.
-   */
-  mask?: string;
-  /**
-   * Width of output image
-   * @default 1024
-   */
-  width?: number;
-  /**
-   * Height of output image
-   * @default 1024
-   */
-  height?: number;
-  /**
-   * Number of images to output.
-   * @default 1
-   * @range min: 1, max: 4
-   */
-  num_outputs?: number;
-  /**
-   * scheduler
-   * @default "K_EULER"
-   */
-  scheduler?: unknown;
-  /**
-   * Number of denoising steps
-   * @default 50
-   * @range min: 1, max: 500
-   */
-  num_inference_steps?: number;
-  /**
-   * Scale for classifier-free guidance
-   * @default 7.5
-   * @range min: 1, max: 50
-   */
-  guidance_scale?: number;
-  /**
-   * Prompt strength when using img2img / inpaint. 1.0 corresponds to full destruction of information in image
-   * @default 0.8
-   * @range min: 0, max: 1
-   */
-  prompt_strength?: number;
-  /**
-   * Random seed. Leave blank to randomize the seed
-   */
-  seed?: number;
-  /**
-   * Which refine style to use
-   * @default "no_refiner"
-   */
-  refine?: unknown;
-  /**
-   * For expert_ensemble_refiner, the fraction of noise to use
-   * @default 0.8
-   * @range min: 0, max: 1
-   */
-  high_noise_frac?: number;
-  /**
-   * For base_image_refiner, the number of steps to refine, defaults to num_inference_steps
-   */
-  refine_steps?: number;
-  /**
-   * Applies a watermark to enable determining if an image is generated in downstream applications. If you have other provisions for generating or deploying images safely, you can use this to disable watermarking.
-   * @default true
-   */
-  apply_watermark?: boolean;
-  /**
-   * LoRA additive scale. Only applicable on trained models.
-   * @default 0.6
-   * @range min: 0, max: 1
-   */
-  lora_scale?: number;
-  /**
-   * Replicate LoRA weights to use. Leave blank to use the default weights.
-   */
-  replicate_weights?: string;
-  /**
-   * Disable safety checker for generated images. This feature is only available through the API. See [https://replicate.com/docs/how-does-replicate-work#safety](https://replicate.com/docs/how-does-replicate-work#safety)
-   * @default false
-   */
-  disable_safety_checker?: boolean;
-}
-
-/** Output type for stability-ai/sdxl */
-export type SDXLOutput = string[];
-
-/**
- * Input parameters for bytedance/sdxl-lightning-4step
- */
-export interface SDXLLightningInput {
-  /**
-   * Input prompt
-   * @default "self-portrait of a woman, lightning in the background"
-   */
-  prompt?: string;
-  /**
-   * Negative Input prompt
-   * @default "worst quality, low quality"
-   */
-  negative_prompt?: string;
-  /**
-   * Width of output image. Recommended 1024 or 1280
-   * @default 1024
-   * @range min: 256, max: 1280
-   */
-  width?: number;
-  /**
-   * Height of output image. Recommended 1024 or 1280
-   * @default 1024
-   * @range min: 256, max: 1280
-   */
-  height?: number;
-  /**
-   * Number of images to output.
-   * @default 1
-   * @range min: 1, max: 4
-   */
-  num_outputs?: number;
-  /**
-   * scheduler
-   * @default "K_EULER"
-   */
-  scheduler?: unknown;
-  /**
-   * Number of denoising steps. 4 for best results
-   * @default 4
-   * @range min: 1, max: 10
-   */
-  num_inference_steps?: number;
-  /**
-   * Scale for classifier-free guidance
-   * @default 0
-   * @range min: 0, max: 50
-   */
-  guidance_scale?: number;
-  /**
-   * Random seed. Leave blank to randomize the seed
-   * @default 0
-   */
-  seed?: number;
-  /**
-   * Disable safety checker for generated images
-   * @default false
-   */
-  disable_safety_checker?: boolean;
-}
-
-/** Output type for bytedance/sdxl-lightning-4step */
-export type SDXLLightningOutput = string[];
 
 /**
  * Input parameters for black-forest-labs/flux-kontext-dev
@@ -1055,34 +934,6 @@ export interface Lipsync2ProInput {
 export type Lipsync2ProOutput = string;
 
 /**
- * Input parameters for bytedance/latentsync
- */
-export interface LatentSyncInput {
-  /**
-   * Input video
-   */
-  video?: string;
-  /**
-   * Input audio to
-   */
-  audio?: string;
-  /**
-   * Guidance scale
-   * @default 1
-   * @range min: 0, max: 10
-   */
-  guidance_scale?: number;
-  /**
-   * Set to 0 for Random seed
-   * @default 0
-   */
-  seed?: number;
-}
-
-/** Output type for bytedance/latentsync */
-export type LatentSyncOutput = string;
-
-/**
  * Input parameters for pixverse/lipsync
  */
 export interface PixverseLipsyncInput {
@@ -1106,13 +957,12 @@ export type PixverseLipsyncOutput = string;
 /** All supported Replicate model IDs */
 export type ReplicateModelId =
   | 'google/nano-banana'
+  | 'google/nano-banana-2'
   | 'google/nano-banana-pro'
   | 'prunaai/z-image-turbo'
   | 'black-forest-labs/flux-schnell'
   | 'black-forest-labs/flux-dev'
   | 'black-forest-labs/flux-1.1-pro'
-  | 'stability-ai/sdxl'
-  | 'bytedance/sdxl-lightning-4step'
   | 'black-forest-labs/flux-kontext-dev'
   | 'google/veo-3.1-fast'
   | 'google/veo-3.1'
@@ -1125,19 +975,17 @@ export type ReplicateModelId =
   | 'luma/reframe-video'
   | 'sync/lipsync-2'
   | 'sync/lipsync-2-pro'
-  | 'bytedance/latentsync'
   | 'pixverse/lipsync';
 
 /** Map from model ID to input type */
 export interface ReplicateModelInputMap {
   'google/nano-banana': NanoBananaInput;
+  'google/nano-banana-2': NanoBanana2Input;
   'google/nano-banana-pro': NanoBananaProInput;
   'prunaai/z-image-turbo': ZImageTurboInput;
   'black-forest-labs/flux-schnell': FluxSchnellInput;
   'black-forest-labs/flux-dev': FluxDevInput;
   'black-forest-labs/flux-1.1-pro': Flux11ProInput;
-  'stability-ai/sdxl': SDXLInput;
-  'bytedance/sdxl-lightning-4step': SDXLLightningInput;
   'black-forest-labs/flux-kontext-dev': FluxKontextDevInput;
   'google/veo-3.1-fast': Veo31FastInput;
   'google/veo-3.1': Veo31Input;
@@ -1150,20 +998,18 @@ export interface ReplicateModelInputMap {
   'luma/reframe-video': LumaReframeVideoInput;
   'sync/lipsync-2': Lipsync2Input;
   'sync/lipsync-2-pro': Lipsync2ProInput;
-  'bytedance/latentsync': LatentSyncInput;
   'pixverse/lipsync': PixverseLipsyncInput;
 }
 
 /** Map from model ID to output type */
 export interface ReplicateModelOutputMap {
   'google/nano-banana': NanoBananaOutput;
+  'google/nano-banana-2': NanoBanana2Output;
   'google/nano-banana-pro': NanoBananaProOutput;
   'prunaai/z-image-turbo': ZImageTurboOutput;
   'black-forest-labs/flux-schnell': FluxSchnellOutput;
   'black-forest-labs/flux-dev': FluxDevOutput;
   'black-forest-labs/flux-1.1-pro': Flux11ProOutput;
-  'stability-ai/sdxl': SDXLOutput;
-  'bytedance/sdxl-lightning-4step': SDXLLightningOutput;
   'black-forest-labs/flux-kontext-dev': FluxKontextDevOutput;
   'google/veo-3.1-fast': Veo31FastOutput;
   'google/veo-3.1': Veo31Output;
@@ -1176,7 +1022,6 @@ export interface ReplicateModelOutputMap {
   'luma/reframe-video': LumaReframeVideoOutput;
   'sync/lipsync-2': Lipsync2Output;
   'sync/lipsync-2-pro': Lipsync2ProOutput;
-  'bytedance/latentsync': LatentSyncOutput;
   'pixverse/lipsync': PixverseLipsyncOutput;
 }
 
