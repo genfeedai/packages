@@ -15,7 +15,7 @@ on:
           - workflows
           - prompts
           - workflow-ui
-          - cli
+          - deserializer
           - all
 
 concurrency:
@@ -379,14 +379,14 @@ jobs:
         run: npm publish --provenance --access public --registry https://registry.npmjs.org
 
   # ─────────────────────────────────────────────
-  # @genfeedai/cli (standalone, no workspace deps)
+  # @genfeedai/deserializer (standalone package)
   # ─────────────────────────────────────────────
-  publish-cli:
-    name: Publish @genfeedai/cli
+  publish-deserializer:
+    name: Publish @genfeedai/deserializer
     runs-on: ubuntu-latest
     if: >-
-      startsWith(github.ref, 'refs/tags/cli-v') ||
-      (github.event_name == 'workflow_dispatch' && (github.event.inputs.package == 'cli' || github.event.inputs.package == 'all'))
+      startsWith(github.ref, 'refs/tags/deserializer-v') ||
+      (github.event_name == 'workflow_dispatch' && (github.event.inputs.package == 'deserializer' || github.event.inputs.package == 'all'))
     permissions:
       contents: read
       id-token: write
@@ -405,10 +405,10 @@ jobs:
         run: bun install
 
       - name: Validate version (tag push only)
-        if: startsWith(github.ref, 'refs/tags/cli-v')
-        working-directory: cli
+        if: startsWith(github.ref, 'refs/tags/deserializer-v')
+        working-directory: deserializer
         run: |
-          TAG_VERSION="${GITHUB_REF#refs/tags/cli-v}"
+          TAG_VERSION="${GITHUB_REF#refs/tags/deserializer-v}"
           PKG_VERSION=$(node -p "require('./package.json').version")
           if [ "$TAG_VERSION" != "$PKG_VERSION" ]; then
             echo "::error::Tag version ($TAG_VERSION) does not match package.json version ($PKG_VERSION)"
@@ -417,20 +417,16 @@ jobs:
           echo "Version validated: $TAG_VERSION"
 
       - name: Check README exists
-        run: test -s cli/README.md || (echo "::error::README.md is missing or empty" && exit 1)
-
-      - name: Lint
-        working-directory: cli
-        run: bun run lint
+        run: test -s deserializer/README.md || (echo "::error::README.md is missing or empty" && exit 1)
 
       - name: Type check
-        working-directory: cli
+        working-directory: deserializer
         run: bun run typecheck
 
       - name: Build
-        working-directory: cli
+        working-directory: deserializer
         run: bun run build
 
       - name: Publish
-        working-directory: cli
+        working-directory: deserializer
         run: npm publish --provenance --access public --registry https://registry.npmjs.org
