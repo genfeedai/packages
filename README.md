@@ -11,7 +11,9 @@ Published npm packages for the [Genfeed.ai](https://genfeed.ai) platform.
 | [`@genfeedai/workflows`](./workflows) | Pre-built workflow definitions and ComfyUI integrations | [![npm](https://img.shields.io/npm/v/@genfeedai/workflows)](https://www.npmjs.com/package/@genfeedai/workflows) |
 | [`@genfeedai/prompts`](./prompts) | Prompt templates for AI content generation | [![npm](https://img.shields.io/npm/v/@genfeedai/prompts)](https://www.npmjs.com/package/@genfeedai/prompts) |
 | [`@genfeedai/workflow-ui`](./workflow-ui) | Shared UI components for Genfeed workflow editor | [![npm](https://img.shields.io/npm/v/@genfeedai/workflow-ui)](https://www.npmjs.com/package/@genfeedai/workflow-ui) |
-| [`@genfeedai/cli`](./cli) | CLI tool for Genfeed.ai | [![npm](https://img.shields.io/npm/v/@genfeedai/cli)](https://www.npmjs.com/package/@genfeedai/cli) |
+| [`@genfeedai/deserializer`](./deserializer) | JSON:API deserializer for Genfeed API responses | [![npm](https://img.shields.io/npm/v/@genfeedai/deserializer)](https://www.npmjs.com/package/@genfeedai/deserializer) |
+
+Note: `@genfeedai/cli` is published from the standalone [`genfeedai/cli`](https://github.com/genfeedai/cli) repository.
 
 ## Development
 
@@ -25,23 +27,21 @@ bun run --cwd core build
 bun run --cwd workflows build
 bun run --cwd prompts build
 bun run --cwd workflow-ui build
-bun run --cwd cli build
+bun run --cwd deserializer build
 ```
 
 ## Publishing
 
-Packages are published to npm via GitHub Releases. Only the package matching the tag gets published — the other jobs skip automatically.
+Packages are published to npm via GitHub Releases. Only the package matching the tag gets published.
 
 ### Steps
 
 1. Bump the version in `{package}/package.json`
 2. Commit: `git commit -m "chore: bump {package} to {version}"`
-3. Go to **GitHub > Releases > Create a new release**
-4. Create a new tag: `{package}-v{version}` (e.g. `types-v0.1.2`, `cli-v0.3.0`)
-5. Add release notes
-6. Hit **Publish release**
+3. Create a release with a tag: `{package}-v{version}`
+4. Publish release notes
 
-The CI workflow validates that the tag version matches `package.json`, builds workspace dependencies, resolves `workspace:*` references, and publishes to npm with provenance.
+The CI workflow validates tag/package versions, builds dependencies, rewrites `workspace:*` references where needed, and publishes with provenance.
 
 ### Tag format
 
@@ -52,14 +52,12 @@ The CI workflow validates that the tag version matches `package.json`, builds wo
 | `@genfeedai/workflows` | `workflows-v0.1.2` |
 | `@genfeedai/prompts` | `prompts-v0.1.2` |
 | `@genfeedai/workflow-ui` | `workflow-ui-v0.1.6` |
-| `@genfeedai/cli` | `cli-v0.3.0` |
+| `@genfeedai/deserializer` | `deserializer-v1.0.1` |
 
 ### Manual publish
 
-You can also trigger a publish from the **Actions** tab using `workflow_dispatch` and selecting which package (or "all").
+You can trigger publishing from the **Actions** tab with `workflow_dispatch` and choose a package (or `all`).
 
 ## License
 
-Core packages (types, core, workflows, prompts, workflow-ui) are licensed under [AGPL-3.0](https://www.gnu.org/licenses/agpl-3.0.html).
-
-CLI is licensed under [MIT](https://opensource.org/licenses/MIT).
+Public package licenses are declared per package in each `package.json`.

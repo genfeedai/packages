@@ -8,6 +8,9 @@
     "workflows",
     "prompts",
     "workflow-ui",
-    "cli"
-  ]
+    "deserializer"
+  ],
+  "scripts": {
+    "check:public-packages": "node scripts/check-public-package-manifests.mjs"
+  }
 }

@@ -1,0 +1,36 @@
+{
+  "description": "JSON:API deserializer for Genfeed.ai API responses",
+  "devDependencies": {
+    "typescript": "5.9.3"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "name": "@genfeedai/deserializer",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "tsc --build --force",
+    "typecheck": "tsc --noEmit"
+  },
+  "types": "./dist/index.d.ts",
+  "version": "1.0.1",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/genfeedai/packages.git",
+    "directory": "deserializer"
+  },
+  "sideEffects": false
+}
