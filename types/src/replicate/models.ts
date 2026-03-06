@@ -1,7 +1,7 @@
 /**
  * Auto-generated Replicate model types
  * DO NOT EDIT - Run `bun run sync:replicate` to regenerate
- * Generated at: 2026-02-26T20:32:20.371Z
+ * Generated at: 2026-03-06T02:26:55.223Z
  */
 
 // This file is auto-generated. Do not edit manually.
@@ -67,7 +67,7 @@ export interface NanoBanana2Input {
    */
   google_search?: boolean;
   /**
-   * Use Google Image Search grounding to use web images as visual context for generation. When enabled, web search is also used automatically.
+   * Use Google Image Search grounding to find web images as visual context for generation. When enabled, web search is also used automatically.
    * @default false
    */
   image_search?: boolean;
@@ -161,7 +161,7 @@ export interface ZImageTurboInput {
    */
   seed?: number;
   /**
-   * Deprecated. Kept for API compatibility with original z-image-turbo.
+   * Apply additional optimizations for faster generation
    * @default false
    */
   go_fast?: boolean;
