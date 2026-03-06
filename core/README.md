@@ -1,54 +1,32 @@
 # @genfeedai/core
 
-Core utilities for the Genfeed workflow engine including pricing, validation, and topological sorting.
+Core workflow utilities for pricing, validation, and graph ordering.
 
-## Installation
+## Install
 
 ```bash
-npm install @genfeedai/core
-# or
-bun add @genfeedai/core
+npm i @genfeedai/core
 ```
 
 ## Usage
 
-### Workflow Validation
+```ts
+import { validateWorkflow, PRICING } from '@genfeedai/core';
+import { topologicalSort } from '@genfeedai/core/topological-sort';
 
-```typescript
-import { validateWorkflow, isValidConnection, detectCycles } from '@genfeedai/core';
-
-const result = validateWorkflow(nodes, edges);
-if (!result.valid) {
-  console.error(result.errors);
-}
+const validation = validateWorkflow(nodes, edges);
+const ordered = topologicalSort(nodes, edges);
+const cost = PRICING['flux-dev'];
 ```
 
-### Topological Sort
+## Related Packages
 
-```typescript
-import { topologicalSort, buildDependencyMap } from '@genfeedai/core/topological-sort';
+- `@genfeedai/types`
+- `@genfeedai/workflow-ui`
 
-const executionOrder = topologicalSort(nodes, edges);
-```
+## Build Faster with Genfeed
 
-### Pricing
-
-```typescript
-import { PRICING, RESOLUTIONS, VIDEO_DURATIONS } from '@genfeedai/core';
-
-const cost = PRICING['flux-dev'].perImage;
-```
-
-## API
-
-| Export | Description |
-|--------|-------------|
-| `validateWorkflow` | Validate workflow nodes and edges |
-| `isValidConnection` | Check if a connection between handles is valid |
-| `detectCycles` | Detect cycles in workflow graph |
-| `topologicalSort` | Sort nodes in execution order |
-| `PRICING` | Per-model pricing constants |
-| `RESOLUTIONS` | Available image resolutions |
+Use these packages directly, or run complete content workflows at [https://genfeed.ai](https://genfeed.ai).
 
 ## License
 

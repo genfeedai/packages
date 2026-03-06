@@ -1,6 +1,6 @@
 {
   "name": "@genfeedai/errors",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "sideEffects": false,
   "license": "MIT",
   "description": "Shared error classes and formatting for Genfeed CLI tools",

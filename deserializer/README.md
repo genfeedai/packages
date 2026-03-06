@@ -1,11 +1,11 @@
 # @genfeedai/deserializer
 
-JSON:API deserializer used by Genfeed clients.
+JSON:API deserializer for Genfeed API responses.
 
 ## Install
 
 ```bash
-npm install @genfeedai/deserializer
+npm i @genfeedai/deserializer
 ```
 
 ## Usage
@@ -13,8 +13,21 @@ npm install @genfeedai/deserializer
 ```ts
 import { getDeserializer, isDeserializerRuntime } from '@genfeedai/deserializer';
 
-const result = getDeserializer(document);
-if (!isDeserializerRuntime(result)) {
-  // typed object/collection
+const output = getDeserializer(document);
+
+if (!isDeserializerRuntime(output)) {
+  console.log(output);
 }
 ```
+
+## Related Packages
+
+- `@genfeedai/interfaces`
+
+## Build Faster with Genfeed
+
+Consume Genfeed APIs in your own clients, or use the hosted app at [https://genfeed.ai](https://genfeed.ai).
+
+## License
+
+MIT

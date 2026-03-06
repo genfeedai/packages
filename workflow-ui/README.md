@@ -1,52 +1,30 @@
 # @genfeedai/workflow-ui
 
-Shared UI components for the Genfeed workflow editor built on React Flow.
+Shared workflow editor UI components built on React Flow.
 
-## Installation
-
-```bash
-npm install @genfeedai/workflow-ui
-# or
-bun add @genfeedai/workflow-ui
-```
-
-### Peer Dependencies
+## Install
 
 ```bash
-npm install @xyflow/react react react-dom zustand zundo next
+npm i @genfeedai/workflow-ui
 ```
 
 ## Usage
 
-```typescript
+```ts
 import { WorkflowCanvas } from '@genfeedai/workflow-ui/canvas';
+import { WorkflowUIProvider } from '@genfeedai/workflow-ui/provider';
 import { useWorkflowStore } from '@genfeedai/workflow-ui/stores';
-import { WorkflowProvider } from '@genfeedai/workflow-ui/provider';
-```
-
-### Subpath Exports
-
-| Export | Description |
-|--------|-------------|
-| `@genfeedai/workflow-ui` | Main entry (re-exports all) |
-| `@genfeedai/workflow-ui/canvas` | Workflow canvas components |
-| `@genfeedai/workflow-ui/nodes` | Node type components |
-| `@genfeedai/workflow-ui/panels` | Side panels (inspector, settings) |
-| `@genfeedai/workflow-ui/toolbar` | Toolbar components |
-| `@genfeedai/workflow-ui/hooks` | React hooks |
-| `@genfeedai/workflow-ui/stores` | Zustand stores |
-| `@genfeedai/workflow-ui/provider` | Context providers |
-| `@genfeedai/workflow-ui/ui` | Primitive UI components |
-| `@genfeedai/workflow-ui/lib` | Utility functions |
-| `@genfeedai/workflow-ui/styles` | CSS stylesheet |
-
-### Styles
-
-Import the stylesheet in your app:
-
-```typescript
 import '@genfeedai/workflow-ui/styles';
 ```
+
+## Related Packages
+
+- `@genfeedai/types`
+- `@genfeedai/core`
+
+## Build Faster with Genfeed
+
+Embed the workflow UI in your own product, or use Genfeed out of the box at [https://genfeed.ai](https://genfeed.ai).
 
 ## License
 

@@ -1,6 +1,6 @@
 {
   "name": "@genfeedai/prompts",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "sideEffects": false,
   "license": "AGPL-3.0",
   "repository": {

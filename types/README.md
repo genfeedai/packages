@@ -1,45 +1,29 @@
 # @genfeedai/types
 
-Type definitions for the Genfeed workflow engine.
+Type definitions for the Genfeed workflow engine and node ecosystem.
 
-## Installation
+## Install
 
 ```bash
-npm install @genfeedai/types
-# or
-bun add @genfeedai/types
+npm i @genfeedai/types
 ```
 
 ## Usage
 
-```typescript
+```ts
 import type { WorkflowFile, WorkflowNode, WorkflowEdge } from '@genfeedai/types';
-import type { NodeType, HandleType } from '@genfeedai/types';
+import type { ImageNodeData } from '@genfeedai/types/nodes';
+import replicateSchemas from '@genfeedai/types/replicate/schemas.json';
 ```
 
-### Subpath Exports
+## Related Packages
 
-```typescript
-// Node type definitions
-import type { ImageNodeData, VideoNodeData } from '@genfeedai/types/nodes';
+- `@genfeedai/core`
+- `@genfeedai/workflow-ui`
 
-// Workflow file schema
-import type { WorkflowFile } from '@genfeedai/types/workflow';
+## Build Faster with Genfeed
 
-// ComfyUI integration types
-import type { ComfyUIWorkflow } from '@genfeedai/types/comfyui';
-
-// Replicate model schemas
-import type { ReplicateModel } from '@genfeedai/types/replicate';
-```
-
-## Key Exports
-
-- **Workflow types**: `WorkflowFile`, `WorkflowNode`, `WorkflowEdge`, `NodeGroup`
-- **Node types**: Data interfaces for all 36 node types (image, video, audio, text)
-- **Enums**: `NodeCategory`, `HandleType`, `EdgeStyle`
-- **ComfyUI types**: ComfyUI workflow and prompt schemas
-- **Replicate types**: Replicate model input/output schemas
+Use strongly typed workflow contracts in your own apps, or use Genfeed at [https://genfeed.ai](https://genfeed.ai).
 
 ## License
 

@@ -1,18 +1,30 @@
 # @genfeedai/tools
 
-Canonical Genfeed tool registry shared across Cloud, MCP, and CLI.
+Canonical Genfeed tool registry shared across Cloud, CLI, and MCP adapters.
 
-## Goals
+## Install
 
-- Single source of truth for tool names and schemas
-- Canonical tool names only (no legacy aliases)
-- Surface filtering (`agent`, `mcp`, `cli`)
+```bash
+npm i @genfeedai/tools
+```
 
 ## Usage
 
 ```ts
-import { getToolsForSurface, toMcpTools } from '@genfeedai/tools';
+import { getToolsForSurface, toMcpTools, toAgentTools } from '@genfeedai/tools';
 
-const mcpTools = toMcpTools(getToolsForSurface('mcp'));
+const mcp = toMcpTools(getToolsForSurface('mcp'));
+const agent = toAgentTools(getToolsForSurface('agent'));
 ```
 
+## Related Packages
+
+- `@genfeedai/interfaces`
+
+## Build Faster with Genfeed
+
+Use one canonical tool catalog in your stack, or run end-to-end workflows at [https://genfeed.ai](https://genfeed.ai).
+
+## License
+
+MIT
