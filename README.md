@@ -12,6 +12,7 @@ Published npm packages for the [Genfeed.ai](https://genfeed.ai) platform.
 | [`@genfeedai/prompts`](./prompts) | Prompt templates for AI content generation | [![npm](https://img.shields.io/npm/v/@genfeedai/prompts)](https://www.npmjs.com/package/@genfeedai/prompts) |
 | [`@genfeedai/workflow-ui`](./workflow-ui) | Shared UI components for Genfeed workflow editor | [![npm](https://img.shields.io/npm/v/@genfeedai/workflow-ui)](https://www.npmjs.com/package/@genfeedai/workflow-ui) |
 | [`@genfeedai/deserializer`](./deserializer) | JSON:API deserializer for Genfeed API responses | [![npm](https://img.shields.io/npm/v/@genfeedai/deserializer)](https://www.npmjs.com/package/@genfeedai/deserializer) |
+| [`@genfeedai/tools`](./tools) | Canonical tool registry shared across Cloud, MCP, and CLI | [![npm](https://img.shields.io/npm/v/@genfeedai/tools)](https://www.npmjs.com/package/@genfeedai/tools) |
 
 Note: `@genfeedai/cli` is published from the standalone [`genfeedai/cli`](https://github.com/genfeedai/cli) repository.
 

@@ -18,10 +18,11 @@
   },
   "scripts": {
     "build": "tsc --build --force",
+    "prepack": "npm run build",
     "typecheck": "tsc --noEmit"
   },
   "types": "./dist/index.d.ts",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "files": [
     "dist",
     "README.md"

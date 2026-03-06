@@ -5,6 +5,7 @@
     "types",
     "core",
     "errors",
+    "tools",
     "workflows",
     "prompts",
     "workflow-ui",
