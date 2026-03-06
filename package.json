@@ -6,10 +6,13 @@
     "core",
     "errors",
     "tools",
+    "constants",
+    "enums",
     "workflows",
     "prompts",
     "workflow-ui",
-    "deserializer"
+    "deserializer",
+    "interfaces"
   ],
   "scripts": {
     "check:public-packages": "node scripts/check-public-package-manifests.mjs"
